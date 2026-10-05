@@ -10,7 +10,7 @@ export const cafes = {
   "atelier": {
     name: "Atelier",
     tagline: "Coffee Programme · Est. 2019",
-    active: true,
+    active: false,
   },
 
   // "cafe-xyz": {
