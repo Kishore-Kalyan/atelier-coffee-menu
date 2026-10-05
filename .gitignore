@@ -1,4 +1,6 @@
 node_modules
 dist
 .vercel
+.claude
+qr-menu.png
 *.local
