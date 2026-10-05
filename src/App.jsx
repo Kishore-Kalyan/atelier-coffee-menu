@@ -1,22 +1,20 @@
-import { useTheme } from './context/ThemeContext'
-import Header from './components/Header'
-import MenuNav from './components/MenuNav'
-import MenuSection from './components/MenuSection'
-import MenuFooter from './components/MenuFooter'
-import { menuSections } from './data/menu'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import CafePage from './pages/CafePage'
+import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
-  const { t } = useTheme()
   return (
-    <div className="min-h-screen transition-colors duration-300" style={{ background: t.pageBg }}>
-      <Header />
-      <MenuNav />
-      <main>
-        {menuSections.map((section, i) => (
-          <MenuSection key={section.id} section={section} alternate={i % 2 === 1} />
-        ))}
-      </main>
-      <MenuFooter />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Root: redirect to the default café */}
+        <Route path="/" element={<Navigate to="/atelier" replace />} />
+
+        {/* Each café gets its own URL: /<slug> */}
+        <Route path="/:slug" element={<CafePage />} />
+
+        {/* Anything else is a 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
